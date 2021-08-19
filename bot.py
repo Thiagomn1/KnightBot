@@ -1,10 +1,18 @@
 import discord
 import os
+import aiosqlite
+import asyncio
 from discord.ext import commands
 from constants import TOKEN
 
-intents = discord.Intents(messages = True, guilds = True, reactions = True, members = True, presences = True)
+intents = discord.Intents.default()
+intents.members = True
 client = commands.Bot(command_prefix = '.', intents = intents)
+
+async def connection():
+    await client.wait_until_ready()
+    client.db = await aiosqlite.connect('Data.db')
+    await client.db.execute('CREATE TABLE IF NOT EXISTS rpData (user_id TEXT, character TEXT, job, PRIMARY KEY (user_id))')
 
 @client.event
 async def on_ready():
@@ -25,19 +33,10 @@ async def on_member_join(member):
 
     await channel.send(embed=embed)
 
-@client.command()
-async def load(ctx, extension):
-    client.load_extension(f'modules.{extension}')
-    await ctx.message.delete()
-
-@client.command()
-async def unload(ctx, extension):
-    client.unload_extension(f'modules.{extension}')
-    await ctx.message.delete()
-
 for modules in os.listdir('./modules'):
     if modules.endswith('.py'):
         client.load_extension(f'modules.{modules[:-3]}')
 
-
+client.loop.create_task(connection())
 client.run(TOKEN)
+asyncio.run(client.db.close())

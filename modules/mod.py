@@ -48,5 +48,17 @@ class Mod(commands.Cog):
     async def clear(self, ctx, amount=1):
         await ctx.channel.purge(limit=amount)
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def load(self, ctx, extension):
+        self.client.load_extension(f'modules.{extension}')
+        await ctx.message.delete()
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def unload(self, ctx, extension):
+        self.client.unload_extension(f'modules.{extension}')
+        await ctx.message.delete()
+
 def setup(client):
     client.add_cog(Mod(client))
