@@ -3,15 +3,19 @@ from discord.ext import commands
 
 class ReactionRole(commands.Cog):
 
+    # Initialize and set messege/emoji IDs for reaction add
     def __init__(self, client):
         self.client = client
-        self.role_message_id = 877714939173814282 # ID of the message that can be reacted to to add/remove a role.
+        self.role_message_id = 877714939173814282
         self.emoji_to_role = {      
-            discord.PartialEmoji(name='🔴'): 856007661728563220, # ID of the role associated with unicode emoji '🔴'.
-            discord.PartialEmoji(name='🟡'): 763082110801543189, # ID of the role associated with unicode emoji '🟡'.
+            discord.PartialEmoji(name='🔴'): 856007661728563220,
+            discord.PartialEmoji(name='🟡'): 763082110801543189,
         }
+
+
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
+
         if payload.message_id != self.role_message_id:
             return
 
