@@ -3,11 +3,11 @@ import os
 import aiosqlite
 import asyncio
 from discord.ext import commands
-from constants import TOKEN
-# https://discord.com/api/oauth2/authorize?client_id=875747829971288114&permissions=8&scope=bot
+
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(command_prefix = '.', intents = intents)
+token = os.environ["TOKEN"]
 
 async def connection():
     await client.wait_until_ready()
@@ -56,5 +56,5 @@ for modules in os.listdir('./modules'):
         client.load_extension(f'modules.{modules[:-3]}')
 
 client.loop.create_task(connection())
-client.run(TOKEN)
+client.run(token)
 asyncio.run(client.db.close())
