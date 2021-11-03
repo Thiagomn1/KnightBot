@@ -2,3 +2,4 @@ aiosqlite
 pip
 Pillow
 discord.py
+requests
