@@ -21,8 +21,8 @@ class Roleplay(commands.Cog):
 
         img = Image.open(requests.get("https://cdn.discordapp.com/attachments/879812200301199423/879815069557456916/XIVDialogue1.png", stream=True).raw)
         draw = ImageDraw.Draw(img)
-        titlefont = ImageFont.truetype(font="assets/MyriadSemiBold.otf", size=40)
-        dialoguefont = ImageFont.truetype(font="assets/MyriadRegular.otf", size=36)
+        titlefont = ImageFont.truetype(font="assets/MyriadSemiBold.OTF", size=40)
+        dialoguefont = ImageFont.truetype(font="assets/MyriadRegular.OTF", size=36)
         buffer = BytesIO()
 
 
@@ -138,8 +138,8 @@ class Roleplay(commands.Cog):
 
         img = Image.open(requests.get("https://cdn.discordapp.com/attachments/879812200301199423/879814854444204092/FGODialogue.png", stream=True).raw)
         draw = ImageDraw.Draw(img)
-        titlefont = ImageFont.truetype(font="assets/MyriadSemiBold.otf", size=40)
-        dialoguefont = ImageFont.truetype(font="assets/MyriadRegular.otf", size=36)
+        titlefont = ImageFont.truetype(font="assets/MyriadSemiBold.OTF", size=40)
+        dialoguefont = ImageFont.truetype(font="assets/MyriadRegular.OTF", size=36)
         buffer = BytesIO()
     
 
@@ -154,13 +154,6 @@ class Roleplay(commands.Cog):
         await ctx.send(file = discord.File(fp=buffer, filename=f'{name}.png'))
 
         await ctx.message.delete()
-
-
-    @fgo.error
-    async def fgo_error(self, ctx, error):
-        if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.message.add_reaction(emoji='❌')
-
 
 def setup(client):
     client.add_cog(Roleplay(client))
