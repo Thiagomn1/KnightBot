@@ -35,7 +35,7 @@ class Roleplay(commands.Cog):
             name, message = message.split('|', 1)
 
             draw.text((95,30), name, font=titlefont, fill=(255, 255, 255))
-            textwrapped = textwrap.wrap(message, width=65)
+            textwrapped = textwrap.wrap(message, width=49)
             draw.text((55,80), '\n'.join(textwrapped), font=dialoguefont, fill=(0, 0, 0))  
 
             img.save(buffer, 'PNG')
@@ -49,7 +49,7 @@ class Roleplay(commands.Cog):
             if (message.find("||") != -1 or message.find("|") == -1):
 
                 draw.text((95,30), namedb[0], font=titlefont, fill=(255, 255, 255))
-                textwrapped = textwrap.wrap(message, width=65)
+                textwrapped = textwrap.wrap(message, width=49)
                 draw.text((55,80), '\n'.join(textwrapped), font=dialoguefont, fill=(0, 0, 0))  
 
                 img.save(buffer, 'PNG')
@@ -63,7 +63,7 @@ class Roleplay(commands.Cog):
                 name, message = message.split('|', 1)
 
                 draw.text((95,30), name, font=titlefont, fill=(255, 255, 255))
-                textwrapped = textwrap.wrap(message, width=65)
+                textwrapped = textwrap.wrap(message, width=49)
                 draw.text((55,80), '\n'.join(textwrapped), font=dialoguefont, fill=(0, 0, 0))  
 
                 img.save(buffer, 'PNG')
