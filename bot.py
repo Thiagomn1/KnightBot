@@ -37,6 +37,7 @@ async def on_member_join(member):
     guild = member.guild
     cursor = await client.db.execute('SELECT welcome FROM modData WHERE guild_id = ?', (member.guild.id,))
     message = await cursor.fetchone()
+
     if guild.system_channel is not None:
             
         pfp = member.avatar_url

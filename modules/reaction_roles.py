@@ -6,10 +6,10 @@ class ReactionRole(commands.Cog):
     # Initialize and set messege/emoji IDs for reaction add
     def __init__(self, client):
         self.client = client
-        self.role_message_id = 877714939173814282
+        self.role_message_id = 911285899835347054
         self.emoji_to_role = {      
-            discord.PartialEmoji(name='🔴'): 856007661728563220,
-            discord.PartialEmoji(name='🟡'): 763082110801543189,
+            discord.PartialEmoji(name='🔴'): 911286267134750841,
+            discord.PartialEmoji(name='🟡'): 911286332209397854,
         }
 
 
