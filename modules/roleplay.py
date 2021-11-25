@@ -84,15 +84,21 @@ class Roleplay(commands.Cog):
         if len(name) > 25:
             await ctx.message.add_reaction(emoji='❌')
             return
-            
-        cursor = await self.client.db.execute('INSERT OR IGNORE INTO rpData (guild, user_id, xiv_character) VALUES (?, ?, ?)', (guildid, userid, name))
 
-        if cursor.rowcount == 0:
-            await self.client.db.execute('UPDATE rpData SET xiv_character = ? WHERE guild = ? AND user_id = ?', (name, guildid, userid))
+        character = await self.client.db.execute('SELECT xiv_character FROM rpData WHERE guild = ? AND user_id = ?', (guildid, userid))
+        characterdb = await character.fetchone()
+
+        if characterdb is None:
+     
+            cursor = await self.client.db.execute('INSERT INTO rpData (guild, user_id, xiv_character) VALUES (?, ?, ?)', (guildid, userid, name))
+
+        if characterdb is not None:
+            
+            cursor = await self.client.db.execute('UPDATE rpData SET xiv_character = ? WHERE guild = ? AND user_id = ?', (name, guildid, userid))
+
 
         await self.client.db.commit()
         await cursor.close()
-
         await ctx.message.add_reaction(emoji='✔')
 
 
@@ -109,11 +115,17 @@ class Roleplay(commands.Cog):
         member = ctx.author.name
         jobicon = discord.File(f'./assets/Jobs/{job}.png', filename=f'{job}.png')
 
-        cursor = await self.client.db.execute('INSERT OR IGNORE INTO rpData (guild, user_id, job) VALUES (?, ?, ?)', (guildid, userid, job))
 
-        if cursor.rowcount == 0:
-            await self.client.db.execute('UPDATE rpData SET job = ? WHERE guild_id = ? AND user_id = ?', (job, guildid, userid))
+        rpjob = await self.client.db.execute('SELECT job FROM rpData WHERE guild = ? AND user_id = ?', (guildid,userid))
+        jobdb = await rpjob.fetchone()
 
+        if jobdb is None:    
+
+            cursor = await self.client.db.execute('INSERT OR IGNORE INTO rpData (guild, user_id, job) VALUES (?, ?, ?)', (guildid, userid, job))
+
+        if jobdb is not None:
+
+            cursor = await self.client.db.execute('UPDATE rpData SET job = ? WHERE guild = ? AND user_id = ?', (job, guildid, userid))
 
         embed = discord.Embed(
         title = f'{member}',
