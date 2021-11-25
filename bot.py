@@ -43,7 +43,7 @@ async def on_member_join(member):
         pfp = member.avatar_url
         embed = discord.Embed(
             title = f'Welcome to {member.guild.name}, {member.name}!',
-            description = f'{message}',
+            description = f'{message[0]}',
             colour = discord.Colour.blue()
         )
         embed.set_image(url="https://cdn.discordapp.com/attachments/875751399516958782/875770055932137482/EmbedImage.png")
