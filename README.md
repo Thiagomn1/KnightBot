@@ -1,13 +1,28 @@
-# Lore Keeper Discord Bot
+# 🤖 Lore Keeper Discord Bot
 
-#### Video Demo:
+![LicenseBadge](https://img.shields.io/badge/License-MIT-green)
+![GitHub top language](https://img.shields.io/github/languages/top/Thiagomn1/LoreKeeperBot?color=blue&label=Python)
+![GitHub issues](https://img.shields.io/github/issues/Thiagomn1/LoreKeeperBot?color=red&label=Issues)
+![GitHub deployments](https://img.shields.io/github/deployments/Thiagomn1/LoreKeeperBot/lorekeeperbot?color=green&label=Deploy%20State)
 
-#### Description:
+LoreKeeper is a Discord bot built using the **discord.py** library and **SQLite**. Lorekeeper main functionality is for roleplaying purposes, generating **dialogue windows from the game Final Fantasy XIV** according to the message and character name of the user.
 
-For final project in CS50 i developed a discord bot using Python and the Discord.py library with it's main purpose being to replicate messages with the dialogue box from the game Final Fantasy XIV and Fate Grand Order, along with other secondary functions.
+## 💻 Features
 
-For the dialogue box command, by using ".rp Name | Message", the bot generates an image using Pillow containing their message in the format of the game dialogue chosen by the user.
+- [x] Moderator Commands
+- [x] Custom help commands
+- [x] SQLite Database funcionatility to save character names and jobs and different servers
+- [x] Generate custom dialogue box from Final Fantasy XIV
+- [ ] Auto roleplay function to generate dialogue boxes without the need to input the commmand
 
-Other functionalities include sending a custom Emded message for every new member that joins, with a custom message set by the moderator with the ".welcome" command, along with some moderation commands like banning, unbanning members or clearing chat messages.
+## ⚙️ Dependencies
 
-A SQLite database was also implemented with two main purposes, one allowing the user to set a default name for the dialogue command, by doing so not needing to type down their name at every command input and just their message instead. The second funcionatity being the option for them to set a custom welcome message for their server to send when a new member joins.
+- Discord.py
+- Aiosqlite
+- Pillow/PIL
+- Requests
+
+## 🔧 Installation
+
+You will need to install the packages listed in the requirements.txt, you can do so by running `pip install -r requirements.txt`
+
